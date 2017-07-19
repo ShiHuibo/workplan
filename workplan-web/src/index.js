@@ -1,8 +1,19 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import {createProvider as Provider} from "react-redux";
+import AuthenticationContainer from "./containers/AuthenticationContainer";
+import configureStore from "./redux/configureStore";
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+const store = configureStore();
+
+class App extends Component {
+    render() {
+        return (
+            <Provider store={store}>
+                <AuthenticationContainer/>
+            </Provider>
+        )
+    }
+}
+
+ReactDOM.render(<App/>, document.getElementById('app'));
